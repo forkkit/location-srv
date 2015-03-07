@@ -1,0 +1,10 @@
+package go.micro.srv.geo.location.save;
+
+import "github.com/asim/geo-srv/proto/common.proto";
+
+message Request {
+	required geo.Entity entity = 1;
+}
+
+message Response {
+}

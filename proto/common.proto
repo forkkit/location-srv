@@ -1,0 +1,13 @@
+package go.micro.srv.geo;
+
+message Location {
+	required double latitude = 1;
+	required double longitude = 2;
+	required int64 timestamp = 3;
+}
+
+message Entity {
+        required string id = 1;
+	required string type = 2;
+        required Location location = 3;
+}
