@@ -3,6 +3,8 @@ package handler
 import (
 	"code.google.com/p/go.net/context"
 
+	"github.com/asim/geo-srv/dao"
+	"github.com/asim/geo-srv/domain"
 	save "github.com/asim/geo-srv/proto/location/save"
 	"github.com/asim/go-micro/errors"
 	"github.com/asim/go-micro/server"
@@ -18,13 +20,7 @@ func (l *Location) Save(ctx context.Context, req *save.Request, rsp *save.Respon
 		return errors.BadRequest(server.Name+".save", "Require location")
 	}
 
-	l.Index.Add(&Entity{
-		id:        entity.GetId(),
-		typ:       entity.GetType(),
-		latitude:  entity.GetLocation().GetLatitude(),
-		longitude: entity.GetLocation().GetLongitude(),
-		timestamp: entity.GetLocation().GetTimestamp(),
-	})
+	dao.Save(domain.ProtoToEntity(entity))
 
 	return nil
 }

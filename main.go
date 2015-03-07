@@ -5,7 +5,6 @@ import (
 	"github.com/asim/go-micro/cmd"
 	"github.com/asim/go-micro/server"
 	log "github.com/golang/glog"
-	geo "github.com/hailocab/go-geoindex"
 )
 
 func main() {
@@ -19,9 +18,7 @@ func main() {
 
 	// Register Handlers
 	server.Register(
-		server.NewReceiver(&handler.Location{
-			Index: geo.NewPointsIndex(geo.Km(0.5)),
-		}),
+		server.NewReceiver(new(handler.Location)),
 	)
 
 	// Run server
