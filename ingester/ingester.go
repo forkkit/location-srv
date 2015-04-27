@@ -2,11 +2,10 @@ package ingester
 
 import (
 	"encoding/json"
-	"time"
 
 	"github.com/asim/geo-srv/dao"
 	"github.com/asim/geo-srv/domain"
-	"github.com/asim/micro-mq/go/client"
+	"github.com/asim/go-micro/broker"
 	log "github.com/golang/glog"
 )
 
@@ -15,23 +14,19 @@ var (
 )
 
 func Run() {
-	for {
-		ch, err := client.Subscribe(Topic)
-		if err != nil {
-			log.Error(err)
-			continue
+	log.Infof("Starting topic %s subscriber", Topic)
+	broker.Init()
+	broker.Connect()
+	_, err := broker.Subscribe(Topic, func(msg *broker.Message) {
+		var entity *domain.Entity
+		if er := json.Unmarshal(msg.Data, &entity); er != nil {
+			log.Warning(er.Error())
+			return
 		}
-
-		for e := range ch {
-			var entity *domain.Entity
-			if err := json.Unmarshal(e, &entity); err != nil {
-				log.Warning(err.Error())
-				continue
-			}
-			dao.Save(entity)
-		}
-
-		log.Warning("Subscription channel closed")
-		time.Sleep(time.Second * 5)
+		log.Infof("Saving entity ID %s", entity.Id())
+		dao.Save(entity)
+	})
+	if err != nil {
+		log.Errorf("Error subscribing to topic %s: %v", Topic, err)
 	}
 }

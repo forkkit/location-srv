@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/asim/geo-srv/handler"
+	"github.com/asim/geo-srv/ingester"
 	"github.com/asim/go-micro/cmd"
 	"github.com/asim/go-micro/server"
 	log "github.com/golang/glog"
@@ -20,6 +21,9 @@ func main() {
 	server.Register(
 		server.NewReceiver(new(handler.Location)),
 	)
+
+	// Start the ingester
+	ingester.Run()
 
 	// Run server
 	if err := server.Run(); err != nil {
