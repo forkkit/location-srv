@@ -1,6 +1,6 @@
 package go.micro.srv.geo.location.read;
 
-import "github.com/asim/geo-srv/proto/common.proto";
+import "github.com/myodc/geo-srv/proto/common.proto";
 
 message Request {
 	required string id = 1;

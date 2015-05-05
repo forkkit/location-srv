@@ -3,10 +3,10 @@ package ingester
 import (
 	"encoding/json"
 
-	"github.com/asim/geo-srv/dao"
-	"github.com/asim/geo-srv/domain"
-	"github.com/asim/go-micro/broker"
 	log "github.com/golang/glog"
+	"github.com/myodc/geo-srv/dao"
+	"github.com/myodc/geo-srv/domain"
+	"github.com/myodc/go-micro/broker"
 )
 
 var (

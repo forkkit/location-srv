@@ -4,13 +4,13 @@ import (
 	"encoding/json"
 
 	"code.google.com/p/go.net/context"
-	"github.com/asim/geo-srv/domain"
-	"github.com/asim/geo-srv/ingester"
-	save "github.com/asim/geo-srv/proto/location/save"
-	"github.com/asim/go-micro/broker"
-	"github.com/asim/go-micro/errors"
-	"github.com/asim/go-micro/server"
 	log "github.com/golang/glog"
+	"github.com/myodc/geo-srv/domain"
+	"github.com/myodc/geo-srv/ingester"
+	save "github.com/myodc/geo-srv/proto/location/save"
+	"github.com/myodc/go-micro/broker"
+	"github.com/myodc/go-micro/errors"
+	"github.com/myodc/go-micro/server"
 )
 
 func (l *Location) Save(ctx context.Context, req *save.Request, rsp *save.Response) error {

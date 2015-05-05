@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/asim/geo-srv/domain"
-	"github.com/asim/go-micro/errors"
-	"github.com/asim/go-micro/server"
 	geo "github.com/hailocab/go-geoindex"
+	"github.com/myodc/geo-srv/domain"
+	"github.com/myodc/go-micro/errors"
+	"github.com/myodc/go-micro/server"
 )
 
 var (

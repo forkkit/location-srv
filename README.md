@@ -2,7 +2,7 @@
 
 The Geo Server provides an api for saving and retrieving the gps location of any entity.
 
-It's uses [go-micro](https://github.com/asim/go-micro) for the microservice core and Hailo's [go-geoindex](https://github.com/hailocab/go-geoindex) for fast point tracking and K-Nearest queries. 
+It's uses [go-micro](https://github.com/myodc/go-micro) for the microservice core and Hailo's [go-geoindex](https://github.com/hailocab/go-geoindex) for fast point tracking and K-Nearest queries. 
 
 ### Prerequisites
 

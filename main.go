@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/asim/geo-srv/handler"
-	"github.com/asim/geo-srv/ingester"
-	"github.com/asim/go-micro/cmd"
-	"github.com/asim/go-micro/server"
 	log "github.com/golang/glog"
+	"github.com/myodc/geo-srv/handler"
+	"github.com/myodc/geo-srv/ingester"
+	"github.com/myodc/go-micro/cmd"
+	"github.com/myodc/go-micro/server"
 )
 
 func main() {

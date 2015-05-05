@@ -3,11 +3,11 @@ package handler
 import (
 	"code.google.com/p/go.net/context"
 
-	"github.com/asim/geo-srv/dao"
-	read "github.com/asim/geo-srv/proto/location/read"
-	"github.com/asim/go-micro/errors"
-	"github.com/asim/go-micro/server"
 	log "github.com/golang/glog"
+	"github.com/myodc/geo-srv/dao"
+	read "github.com/myodc/geo-srv/proto/location/read"
+	"github.com/myodc/go-micro/errors"
+	"github.com/myodc/go-micro/server"
 )
 
 type Location struct{}

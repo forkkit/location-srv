@@ -1,8 +1,8 @@
 package domain
 
 import (
-	"code.google.com/p/goprotobuf/proto"
-	common "github.com/asim/geo-srv/proto"
+	"github.com/golang/protobuf/proto"
+	common "github.com/myodc/geo-srv/proto"
 )
 
 type Entity struct {

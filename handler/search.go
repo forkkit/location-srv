@@ -3,10 +3,10 @@ package handler
 import (
 	"code.google.com/p/go.net/context"
 
-	"github.com/asim/geo-srv/dao"
-	"github.com/asim/geo-srv/domain"
-	search "github.com/asim/geo-srv/proto/location/search"
 	log "github.com/golang/glog"
+	"github.com/myodc/geo-srv/dao"
+	"github.com/myodc/geo-srv/domain"
+	search "github.com/myodc/geo-srv/proto/location/search"
 )
 
 func (l *Location) Search(ctx context.Context, req *search.Request, rsp *search.Response) error {

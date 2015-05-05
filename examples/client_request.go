@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"time"
 
-	"code.google.com/p/goprotobuf/proto"
-	common "github.com/asim/geo-srv/proto"
-	read "github.com/asim/geo-srv/proto/location/read"
-	save "github.com/asim/geo-srv/proto/location/save"
-	search "github.com/asim/geo-srv/proto/location/search"
-	"github.com/asim/go-micro/client"
+	"github.com/golang/protobuf/proto"
+	common "github.com/myodc/geo-srv/proto"
+	read "github.com/myodc/geo-srv/proto/location/read"
+	save "github.com/myodc/geo-srv/proto/location/save"
+	search "github.com/myodc/geo-srv/proto/location/search"
+	"github.com/myodc/go-micro/client"
 )
 
 func saveEntity() {
