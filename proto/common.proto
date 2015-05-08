@@ -1,13 +1,13 @@
-package go.micro.srv.geo;
+syntax = "proto3";
 
 message Location {
-	required double latitude = 1;
-	required double longitude = 2;
-	required int64 timestamp = 3;
+	optional double latitude = 1;
+	optional double longitude = 2;
+	optional int64 timestamp = 3;
 }
 
 message Entity {
-        required string id = 1;
-	required string type = 2;
-        required Location location = 3;
+        optional string id = 1;
+	optional string type = 2;
+        optional Location location = 3;
 }

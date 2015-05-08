@@ -3,7 +3,7 @@
 // DO NOT EDIT!
 
 /*
-Package go_micro_srv_geo_location_search is a generated protocol buffer package.
+Package search is a generated protocol buffer package.
 
 It is generated from these files:
 	github.com/myodc/geo-srv/proto/location/search/search.proto
@@ -12,66 +12,41 @@ It has these top-level messages:
 	Request
 	Response
 */
-package go_micro_srv_geo_location_search
+package search
 
 import proto "github.com/golang/protobuf/proto"
-import math "math"
-import go_micro_srv_geo "github.com/myodc/geo-srv/proto"
+import common "github.com/myodc/geo-srv/proto"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
-var _ = math.Inf
 
 type Request struct {
-	Center           *go_micro_srv_geo.Location `protobuf:"bytes,1,req,name=center" json:"center,omitempty"`
-	Radius           *float64                   `protobuf:"fixed64,2,req,name=radius" json:"radius,omitempty"`
-	Type             *string                    `protobuf:"bytes,3,opt,name=type" json:"type,omitempty"`
-	NumEntities      *int64                     `protobuf:"varint,4,opt,name=numEntities" json:"numEntities,omitempty"`
-	XXX_unrecognized []byte                     `json:"-"`
+	Center      *common.Location `protobuf:"bytes,1,opt,name=center" json:"center,omitempty"`
+	Radius      float64          `protobuf:"fixed64,2,opt,name=radius" json:"radius,omitempty"`
+	Type        string           `protobuf:"bytes,3,opt,name=type" json:"type,omitempty"`
+	NumEntities int64            `protobuf:"varint,4,opt,name=numEntities" json:"numEntities,omitempty"`
 }
 
 func (m *Request) Reset()         { *m = Request{} }
 func (m *Request) String() string { return proto.CompactTextString(m) }
 func (*Request) ProtoMessage()    {}
 
-func (m *Request) GetCenter() *go_micro_srv_geo.Location {
+func (m *Request) GetCenter() *common.Location {
 	if m != nil {
 		return m.Center
 	}
 	return nil
 }
 
-func (m *Request) GetRadius() float64 {
-	if m != nil && m.Radius != nil {
-		return *m.Radius
-	}
-	return 0
-}
-
-func (m *Request) GetType() string {
-	if m != nil && m.Type != nil {
-		return *m.Type
-	}
-	return ""
-}
-
-func (m *Request) GetNumEntities() int64 {
-	if m != nil && m.NumEntities != nil {
-		return *m.NumEntities
-	}
-	return 0
-}
-
 type Response struct {
-	Entities         []*go_micro_srv_geo.Entity `protobuf:"bytes,1,rep,name=entities" json:"entities,omitempty"`
-	XXX_unrecognized []byte                     `json:"-"`
+	Entities []*common.Entity `protobuf:"bytes,1,rep,name=entities" json:"entities,omitempty"`
 }
 
 func (m *Response) Reset()         { *m = Response{} }
 func (m *Response) String() string { return proto.CompactTextString(m) }
 func (*Response) ProtoMessage()    {}
 
-func (m *Response) GetEntities() []*go_micro_srv_geo.Entity {
+func (m *Response) GetEntities() []*common.Entity {
 	if m != nil {
 		return m.Entities
 	}

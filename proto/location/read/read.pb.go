@@ -3,7 +3,7 @@
 // DO NOT EDIT!
 
 /*
-Package go_micro_srv_geo_location_read is a generated protocol buffer package.
+Package read is a generated protocol buffer package.
 
 It is generated from these files:
 	github.com/myodc/geo-srv/proto/location/read/read.proto
@@ -12,42 +12,31 @@ It has these top-level messages:
 	Request
 	Response
 */
-package go_micro_srv_geo_location_read
+package read
 
 import proto "github.com/golang/protobuf/proto"
-import math "math"
-import go_micro_srv_geo "github.com/myodc/geo-srv/proto"
+import common "github.com/myodc/geo-srv/proto"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
-var _ = math.Inf
 
 type Request struct {
-	Id               *string `protobuf:"bytes,1,req,name=id" json:"id,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
+	Id string `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
 }
 
 func (m *Request) Reset()         { *m = Request{} }
 func (m *Request) String() string { return proto.CompactTextString(m) }
 func (*Request) ProtoMessage()    {}
 
-func (m *Request) GetId() string {
-	if m != nil && m.Id != nil {
-		return *m.Id
-	}
-	return ""
-}
-
 type Response struct {
-	Entity           *go_micro_srv_geo.Entity `protobuf:"bytes,1,req,name=entity" json:"entity,omitempty"`
-	XXX_unrecognized []byte                   `json:"-"`
+	Entity *common.Entity `protobuf:"bytes,1,opt,name=entity" json:"entity,omitempty"`
 }
 
 func (m *Response) Reset()         { *m = Response{} }
 func (m *Response) String() string { return proto.CompactTextString(m) }
 func (*Response) ProtoMessage()    {}
 
-func (m *Response) GetEntity() *go_micro_srv_geo.Entity {
+func (m *Response) GetEntity() *common.Entity {
 	if m != nil {
 		return m.Entity
 	}

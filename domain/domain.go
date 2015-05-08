@@ -1,7 +1,6 @@
 package domain
 
 import (
-	"github.com/golang/protobuf/proto"
 	common "github.com/myodc/geo-srv/proto"
 )
 
@@ -27,22 +26,22 @@ func (e *Entity) Lon() float64 {
 
 func (e *Entity) ToProto() *common.Entity {
 	return &common.Entity{
-		Id:   proto.String(e.ID),
-		Type: proto.String(e.Type),
+		Id:   e.ID,
+		Type: e.Type,
 		Location: &common.Location{
-			Latitude:  proto.Float64(e.Latitude),
-			Longitude: proto.Float64(e.Longitude),
-			Timestamp: proto.Int64(e.Timestamp),
+			Latitude:  e.Latitude,
+			Longitude: e.Longitude,
+			Timestamp: e.Timestamp,
 		},
 	}
 }
 
 func ProtoToEntity(e *common.Entity) *Entity {
 	return &Entity{
-		ID:        e.GetId(),
-		Type:      e.GetType(),
-		Latitude:  e.GetLocation().GetLatitude(),
-		Longitude: e.GetLocation().GetLongitude(),
-		Timestamp: e.GetLocation().GetTimestamp(),
+		ID:        e.Id,
+		Type:      e.Type,
+		Latitude:  e.Location.Latitude,
+		Longitude: e.Location.Longitude,
+		Timestamp: e.Location.Timestamp,
 	}
 }

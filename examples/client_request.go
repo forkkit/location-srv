@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/golang/protobuf/proto"
 	common "github.com/myodc/geo-srv/proto"
 	read "github.com/myodc/geo-srv/proto/location/read"
 	save "github.com/myodc/geo-srv/proto/location/save"
@@ -14,12 +13,12 @@ import (
 
 func saveEntity() {
 	entity := &common.Entity{
-		Id:   proto.String("id123"),
-		Type: proto.String("runner"),
+		Id:   "id123",
+		Type: "runner",
 		Location: &common.Location{
-			Latitude:  proto.Float64(51.516509),
-			Longitude: proto.Float64(0.124615),
-			Timestamp: proto.Int64(time.Now().Unix()),
+			Latitude:  51.516509,
+			Longitude: 0.124615,
+			Timestamp: time.Now().Unix(),
 		},
 	}
 
@@ -39,7 +38,7 @@ func saveEntity() {
 
 func readEntity() {
 	req := client.NewRequest("go.micro.srv.geo", "Location.Read", &read.Request{
-		Id: proto.String("id123"),
+		Id: "id123",
 	})
 
 	rsp := &read.Response{}
@@ -49,19 +48,19 @@ func readEntity() {
 		return
 	}
 
-	fmt.Printf("Read entity: %+v\n", rsp.GetEntity())
+	fmt.Printf("Read entity: %+v\n", rsp.Entity)
 }
 
 func searchForEntities() {
 	req := client.NewRequest("go.micro.srv.geo", "Location.Search", &search.Request{
 		Center: &common.Location{
-			Latitude:  proto.Float64(51.516509),
-			Longitude: proto.Float64(0.124615),
-			Timestamp: proto.Int64(time.Now().Unix()),
+			Latitude:  51.516509,
+			Longitude: 0.124615,
+			Timestamp: time.Now().Unix(),
 		},
-		Radius:      proto.Float64(500.0),
-		Type:        proto.String("runner"),
-		NumEntities: proto.Int64(5),
+		Radius:      500.0,
+		Type:        "runner",
+		NumEntities: 5,
 	})
 
 	rsp := &search.Response{}
@@ -71,7 +70,7 @@ func searchForEntities() {
 		return
 	}
 
-	fmt.Printf("Search results: %+v\n", rsp.GetEntities())
+	fmt.Printf("Search results: %+v\n", rsp.Entities)
 
 }
 

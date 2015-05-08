@@ -3,7 +3,7 @@
 // DO NOT EDIT!
 
 /*
-Package go_micro_srv_geo is a generated protocol buffer package.
+Package common is a generated protocol buffer package.
 
 It is generated from these files:
 	github.com/myodc/geo-srv/proto/common.proto
@@ -12,71 +12,32 @@ It has these top-level messages:
 	Location
 	Entity
 */
-package go_micro_srv_geo
+package common
 
 import proto "github.com/golang/protobuf/proto"
-import math "math"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
-var _ = math.Inf
 
 type Location struct {
-	Latitude         *float64 `protobuf:"fixed64,1,req,name=latitude" json:"latitude,omitempty"`
-	Longitude        *float64 `protobuf:"fixed64,2,req,name=longitude" json:"longitude,omitempty"`
-	Timestamp        *int64   `protobuf:"varint,3,req,name=timestamp" json:"timestamp,omitempty"`
-	XXX_unrecognized []byte   `json:"-"`
+	Latitude  float64 `protobuf:"fixed64,1,opt,name=latitude" json:"latitude,omitempty"`
+	Longitude float64 `protobuf:"fixed64,2,opt,name=longitude" json:"longitude,omitempty"`
+	Timestamp int64   `protobuf:"varint,3,opt,name=timestamp" json:"timestamp,omitempty"`
 }
 
 func (m *Location) Reset()         { *m = Location{} }
 func (m *Location) String() string { return proto.CompactTextString(m) }
 func (*Location) ProtoMessage()    {}
 
-func (m *Location) GetLatitude() float64 {
-	if m != nil && m.Latitude != nil {
-		return *m.Latitude
-	}
-	return 0
-}
-
-func (m *Location) GetLongitude() float64 {
-	if m != nil && m.Longitude != nil {
-		return *m.Longitude
-	}
-	return 0
-}
-
-func (m *Location) GetTimestamp() int64 {
-	if m != nil && m.Timestamp != nil {
-		return *m.Timestamp
-	}
-	return 0
-}
-
 type Entity struct {
-	Id               *string   `protobuf:"bytes,1,req,name=id" json:"id,omitempty"`
-	Type             *string   `protobuf:"bytes,2,req,name=type" json:"type,omitempty"`
-	Location         *Location `protobuf:"bytes,3,req,name=location" json:"location,omitempty"`
-	XXX_unrecognized []byte    `json:"-"`
+	Id       string    `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Type     string    `protobuf:"bytes,2,opt,name=type" json:"type,omitempty"`
+	Location *Location `protobuf:"bytes,3,opt,name=location" json:"location,omitempty"`
 }
 
 func (m *Entity) Reset()         { *m = Entity{} }
 func (m *Entity) String() string { return proto.CompactTextString(m) }
 func (*Entity) ProtoMessage()    {}
-
-func (m *Entity) GetId() string {
-	if m != nil && m.Id != nil {
-		return *m.Id
-	}
-	return ""
-}
-
-func (m *Entity) GetType() string {
-	if m != nil && m.Type != nil {
-		return *m.Type
-	}
-	return ""
-}
 
 func (m *Entity) GetLocation() *Location {
 	if m != nil {

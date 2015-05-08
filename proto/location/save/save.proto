@@ -1,9 +1,9 @@
-package go.micro.srv.geo.location.save;
+syntax = "proto3";
 
 import "github.com/myodc/geo-srv/proto/common.proto";
 
 message Request {
-	required geo.Entity entity = 1;
+	optional Entity entity = 1;
 }
 
 message Response {

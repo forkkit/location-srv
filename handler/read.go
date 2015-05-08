@@ -15,7 +15,7 @@ type Location struct{}
 func (l *Location) Read(ctx context.Context, req *read.Request, rsp *read.Response) error {
 	log.Info("Received Location.Read request")
 
-	id := req.GetId()
+	id := req.Id
 
 	if len(id) == 0 {
 		return errors.BadRequest(server.Name+".read", "Require Id")
