@@ -16,7 +16,9 @@ var (
 func Run() {
 	log.Infof("Starting topic %s subscriber", Topic)
 	broker.Init()
-	broker.Connect()
+	if err := broker.Connect(); err != nil {
+		log.Fatalf("Error connecting to broker: %v", err)
+	}
 	_, err := broker.Subscribe(Topic, func(msg *broker.Message) {
 		var entity *domain.Entity
 		if er := json.Unmarshal(msg.Data, &entity); er != nil {
