@@ -9,6 +9,7 @@ import (
 	save "github.com/myodc/geo-srv/proto/location/save"
 	search "github.com/myodc/geo-srv/proto/location/search"
 	"github.com/myodc/go-micro/client"
+	"github.com/myodc/go-micro/cmd"
 
 	"golang.org/x/net/context"
 )
@@ -77,6 +78,7 @@ func searchForEntities() {
 }
 
 func main() {
+	cmd.Init()
 	saveEntity()
 	readEntity()
 	searchForEntities()
