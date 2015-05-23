@@ -9,6 +9,8 @@ import (
 	save "github.com/myodc/geo-srv/proto/location/save"
 	search "github.com/myodc/geo-srv/proto/location/search"
 	"github.com/myodc/go-micro/client"
+
+	"golang.org/x/net/context"
 )
 
 func saveEntity() {
@@ -28,7 +30,7 @@ func saveEntity() {
 
 	rsp := &save.Response{}
 
-	if err := client.Call(req, rsp); err != nil {
+	if err := client.Call(context.Background(), req, rsp); err != nil {
 		fmt.Println(err)
 		return
 	}
@@ -43,7 +45,7 @@ func readEntity() {
 
 	rsp := &read.Response{}
 
-	if err := client.Call(req, rsp); err != nil {
+	if err := client.Call(context.Background(), req, rsp); err != nil {
 		fmt.Println(err)
 		return
 	}
@@ -65,7 +67,7 @@ func searchForEntities() {
 
 	rsp := &search.Response{}
 
-	if err := client.Call(req, rsp); err != nil {
+	if err := client.Call(context.Background(), req, rsp); err != nil {
 		fmt.Println(err)
 		return
 	}
