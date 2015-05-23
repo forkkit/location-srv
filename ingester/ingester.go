@@ -7,6 +7,7 @@ import (
 	"github.com/myodc/geo-srv/dao"
 	"github.com/myodc/geo-srv/domain"
 	"github.com/myodc/go-micro/broker"
+	"golang.org/x/net/context"
 )
 
 var (
@@ -19,9 +20,9 @@ func Run() {
 	if err := broker.Connect(); err != nil {
 		log.Fatalf("Error connecting to broker: %v", err)
 	}
-	_, err := broker.Subscribe(Topic, func(msg *broker.Message) {
+	_, err := broker.Subscribe(Topic, func(ctx context.Context, msg *broker.Message) {
 		var entity *domain.Entity
-		if er := json.Unmarshal(msg.Data, &entity); er != nil {
+		if er := json.Unmarshal(msg.Body, &entity); er != nil {
 			log.Warning(er.Error())
 			return
 		}

@@ -27,7 +27,7 @@ func (l *Location) Save(ctx context.Context, req *save.Request, rsp *save.Respon
 		return errors.InternalServerError(server.Name+".save", err.Error())
 	}
 
-	broker.Publish(ingester.Topic, b)
+	broker.Publish(ctx, ingester.Topic, b)
 
 	return nil
 }
