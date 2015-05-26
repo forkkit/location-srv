@@ -12,10 +12,10 @@ func main() {
 	// optionally setup command line usage
 	cmd.Init()
 
-	server.Name = "go.micro.srv.geo"
-
 	// Initialise Server
-	server.Init()
+	server.Init(
+		server.Name("go.micro.srv.geo"),
+	)
 
 	// Register Handlers
 	server.Register(

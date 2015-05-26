@@ -19,12 +19,12 @@ func (l *Location) Save(ctx context.Context, req *save.Request, rsp *save.Respon
 	entity := req.GetEntity()
 
 	if entity.GetLocation() == nil {
-		return errors.BadRequest(server.Name+".save", "Require location")
+		return errors.BadRequest(server.Config().Name()+".save", "Require location")
 	}
 
 	b, err := json.Marshal(domain.ProtoToEntity(entity))
 	if err != nil {
-		return errors.InternalServerError(server.Name+".save", err.Error())
+		return errors.InternalServerError(server.Config().Name()+".save", err.Error())
 	}
 
 	broker.Publish(ctx, ingester.Topic, b)
