@@ -18,8 +18,8 @@ func main() {
 	)
 
 	// Register Handlers
-	server.Register(
-		server.NewReceiver(new(handler.Location)),
+	server.Handle(
+		server.NewHandler(new(handler.Location)),
 	)
 
 	// Start the ingester
