@@ -22,8 +22,10 @@ func main() {
 		server.NewHandler(new(handler.Location)),
 	)
 
-	// Start the ingester
-	ingester.Run()
+	// Register Subscriber
+	server.Subscribe(
+		server.NewSubscriber(ingester.Topic, new(ingester.Geo)),
+	)
 
 	// Run server
 	if err := server.Run(); err != nil {

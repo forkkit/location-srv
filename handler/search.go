@@ -1,12 +1,12 @@
 package handler
 
 import (
-	"code.google.com/p/go.net/context"
-
 	log "github.com/golang/glog"
 	"github.com/myodc/geo-srv/dao"
 	"github.com/myodc/geo-srv/domain"
 	search "github.com/myodc/geo-srv/proto/location/search"
+
+	"golang.org/x/net/context"
 )
 
 func (l *Location) Search(ctx context.Context, req *search.Request, rsp *search.Response) error {
