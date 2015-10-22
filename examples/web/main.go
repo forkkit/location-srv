@@ -76,8 +76,8 @@ func saveEntity(id, typ string, lat, lon float64) {
 	}
 }
 
-func start() {
-	b, _ := ioutil.ReadFile("routes/strand.json")
+func start(routeFile string) {
+	b, _ := ioutil.ReadFile(routeFile)
 	var route Route
 	err := json.Unmarshal(b, &route)
 	if err != nil {
@@ -86,11 +86,10 @@ func start() {
 	}
 
 	coords := route.Features[0].Geometry.Coordinates
-	go runner("one", "runner", coords)
 
 	for i := 0; i < 20; i++ {
-		time.Sleep(time.Second * 30)
 		go runner(fmt.Sprintf("%d", time.Now().Unix()), "runner", coords)
+		time.Sleep(time.Second * 30)
 	}
 }
 
@@ -130,7 +129,8 @@ func objectHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	cmd.Init()
 
-	go start()
+	go start("routes/strand.json")
+	go start("routes/holborn.json")
 
 	http.Handle("/", http.FileServer(http.Dir("html")))
 	http.HandleFunc("/objects", objectHandler)
