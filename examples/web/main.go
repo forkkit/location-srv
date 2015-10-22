@@ -88,7 +88,7 @@ func start(routeFile string) {
 	coords := route.Features[0].Geometry.Coordinates
 
 	for i := 0; i < 20; i++ {
-		go runner(fmt.Sprintf("%d", time.Now().Unix()), "runner", coords)
+		go runner(fmt.Sprintf("%s-%d", routeFile, time.Now().UnixNano()), "runner", coords)
 		time.Sleep(time.Second * 30)
 	}
 }
@@ -97,12 +97,12 @@ func runner(id, typ string, coords [][2]float64) {
 	for {
 		for i := 0; i < len(coords); i++ {
 			saveEntity(id, typ, coords[i][1], coords[i][0])
-			time.Sleep(time.Second)
+			time.Sleep(time.Second*5)
 		}
 
 		for i := len(coords) - 1; i >= 0; i-- {
 			saveEntity(id, typ, coords[i][1], coords[i][0])
-			time.Sleep(time.Second)
+			time.Sleep(time.Second*5)
 		}
 	}
 }
@@ -112,7 +112,7 @@ func objectHandler(w http.ResponseWriter, r *http.Request) {
 	lat, _ := strconv.ParseFloat(r.Form.Get("lat"), 64)
 	lon, _ := strconv.ParseFloat(r.Form.Get("lon"), 64)
 
-	e, err := requestEntity("runner", 10, 1500.0, lat, lon)
+	e, err := requestEntity("runner", 100, 1500.0, lat, lon)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
