@@ -89,7 +89,7 @@ func start(routeFile string) {
 
 	for i := 0; i < 20; i++ {
 		go runner(fmt.Sprintf("%s-%d", routeFile, time.Now().UnixNano()), "runner", coords)
-		time.Sleep(time.Second * 30)
+		time.Sleep(time.Minute)
 	}
 }
 
