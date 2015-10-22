@@ -2,7 +2,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY2h1aG5rIiwiYSI6ImNpZzE0dnZ1aTBuZDR1c201MjZ2c
 var lat = 51.513911;;
 var lon = -0.110389;
 var map = L.mapbox.map('map', 'mapbox.streets').setView([lat, lon], 15);
-var url = "/objects";
+var url = window.location.href + "/objects";
 var objMap = {};
 
 function getLocation(loadObjects) {
@@ -31,7 +31,6 @@ function renderObjects(objs) {
         var obj = objs[i]
 
 	if (objMap[obj.id] != undefined) {
-		console.log("setting");
 	    var marker = objMap[obj.id];
             marker.setLatLng(L.latLng(obj["location"]["latitude"], obj["location"]["longitude"]));
         } else {

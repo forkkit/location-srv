@@ -3,45 +3,45 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
 
-	"golang.org/x/net/context"
-	"github.com/myodc/go-micro/cmd"
 	"github.com/myodc/go-micro/client"
+	"github.com/myodc/go-micro/cmd"
+	"golang.org/x/net/context"
 
 	common "github.com/myodc/geo-srv/proto"
-	search "github.com/myodc/geo-srv/proto/location/search"
 	save "github.com/myodc/geo-srv/proto/location/save"
+	search "github.com/myodc/geo-srv/proto/location/search"
 )
 
 type Feature struct {
-	Type string
+	Type       string
 	Properties map[string]interface{}
-	Geometry Geometry
+	Geometry   Geometry
 }
 
 type Geometry struct {
-	Type string
+	Type        string
 	Coordinates [][2]float64
 }
 
 type Route struct {
-	Type string
+	Type     string
 	Features []Feature
 }
 
 func requestEntity(typ string, num int64, radius, lat, lon float64) ([]*common.Entity, error) {
 	req := client.NewRequest("go.micro.srv.geo", "Location.Search", &search.Request{
 		Center: &common.Location{
-			Latitude: lat,
+			Latitude:  lat,
 			Longitude: lon,
 		},
-		Type: typ,
-		Radius: radius,
+		Type:        typ,
+		Radius:      radius,
 		NumEntities: num,
 	})
 
@@ -54,29 +54,29 @@ func requestEntity(typ string, num int64, radius, lat, lon float64) ([]*common.E
 }
 
 func saveEntity(id, typ string, lat, lon float64) {
-        entity := &common.Entity{
-                Id:   id,
-                Type: typ,
-                Location: &common.Location{
-                        Latitude:  lat,
-                        Longitude: lon,
-                        Timestamp: time.Now().Unix(),
-                },
-        }
+	entity := &common.Entity{
+		Id:   id,
+		Type: typ,
+		Location: &common.Location{
+			Latitude:  lat,
+			Longitude: lon,
+			Timestamp: time.Now().Unix(),
+		},
+	}
 
-        req := client.NewRequest("go.micro.srv.geo", "Location.Save", &save.Request{
-                Entity: entity,
-        })
+	req := client.NewRequest("go.micro.srv.geo", "Location.Save", &save.Request{
+		Entity: entity,
+	})
 
-        rsp := &save.Response{}
+	rsp := &save.Response{}
 
-        if err := client.Call(context.Background(), req, rsp); err != nil {
-                fmt.Println(err)
-                return
-        }
+	if err := client.Call(context.Background(), req, rsp); err != nil {
+		fmt.Println(err)
+		return
+	}
 }
 
-func runner() {
+func start() {
 	b, _ := ioutil.ReadFile("routes/strand.json")
 	var route Route
 	err := json.Unmarshal(b, &route)
@@ -86,27 +86,34 @@ func runner() {
 	}
 
 	coords := route.Features[0].Geometry.Coordinates
+	go runner("one", "runner", coords)
 
+	for i := 0; i < 20; i++ {
+		time.Sleep(time.Second * 30)
+		go runner(fmt.Sprintf("%d", time.Now().Unix()), "runner", coords)
+	}
+}
+
+func runner(id, typ string, coords [][2]float64) {
 	for {
 		for i := 0; i < len(coords); i++ {
-			saveEntity("one", "runner", coords[i][1], coords[i][0])
+			saveEntity(id, typ, coords[i][1], coords[i][0])
 			time.Sleep(time.Second)
 		}
 
 		for i := len(coords) - 1; i >= 0; i-- {
-			saveEntity("one", "runner", coords[i][1], coords[i][0])
+			saveEntity(id, typ, coords[i][1], coords[i][0])
 			time.Sleep(time.Second)
 		}
 	}
 }
-
 
 func objectHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	lat, _ := strconv.ParseFloat(r.Form.Get("lat"), 64)
 	lon, _ := strconv.ParseFloat(r.Form.Get("lon"), 64)
 
-	e, err := requestEntity("runner", 10, 500.0, lat, lon)
+	e, err := requestEntity("runner", 10, 1500.0, lat, lon)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
@@ -123,7 +130,7 @@ func objectHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	cmd.Init()
 
-	go runner()
+	go start()
 
 	http.Handle("/", http.FileServer(http.Dir("html")))
 	http.HandleFunc("/objects", objectHandler)
