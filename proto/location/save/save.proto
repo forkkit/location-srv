@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "github.com/myodc/geo-srv/proto/common.proto";
+import "github.com/micro/geo-srv/proto/common.proto";
 
 message Request {
 	optional Entity entity = 1;

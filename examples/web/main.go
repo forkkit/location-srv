@@ -9,13 +9,13 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/myodc/go-micro/client"
-	"github.com/myodc/go-micro/cmd"
+	"github.com/micro/go-micro/client"
+	"github.com/micro/go-micro/cmd"
 	"golang.org/x/net/context"
 
-	common "github.com/myodc/geo-srv/proto"
-	save "github.com/myodc/geo-srv/proto/location/save"
-	search "github.com/myodc/geo-srv/proto/location/search"
+	common "github.com/micro/geo-srv/proto"
+	save "github.com/micro/geo-srv/proto/location/save"
+	search "github.com/micro/geo-srv/proto/location/search"
 )
 
 type Feature struct {

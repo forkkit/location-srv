@@ -2,10 +2,10 @@ package main
 
 import (
 	log "github.com/golang/glog"
-	"github.com/myodc/geo-srv/handler"
-	"github.com/myodc/geo-srv/ingester"
-	"github.com/myodc/go-micro/cmd"
-	"github.com/myodc/go-micro/server"
+	"github.com/micro/geo-srv/handler"
+	"github.com/micro/geo-srv/ingester"
+	"github.com/micro/go-micro/cmd"
+	"github.com/micro/go-micro/server"
 )
 
 func main() {

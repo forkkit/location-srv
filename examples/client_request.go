@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"time"
 
-	common "github.com/myodc/geo-srv/proto"
-	read "github.com/myodc/geo-srv/proto/location/read"
-	save "github.com/myodc/geo-srv/proto/location/save"
-	search "github.com/myodc/geo-srv/proto/location/search"
-	"github.com/myodc/go-micro/client"
-	"github.com/myodc/go-micro/cmd"
+	common "github.com/micro/geo-srv/proto"
+	read "github.com/micro/geo-srv/proto/location/read"
+	save "github.com/micro/geo-srv/proto/location/save"
+	search "github.com/micro/geo-srv/proto/location/search"
+	"github.com/micro/go-micro/client"
+	"github.com/micro/go-micro/cmd"
 
 	"golang.org/x/net/context"
 )

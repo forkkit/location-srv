@@ -2,11 +2,11 @@ package handler
 
 import (
 	log "github.com/golang/glog"
-	"github.com/myodc/geo-srv/ingester"
-	save "github.com/myodc/geo-srv/proto/location/save"
-	"github.com/myodc/go-micro/client"
-	"github.com/myodc/go-micro/errors"
-	"github.com/myodc/go-micro/server"
+	"github.com/micro/geo-srv/ingester"
+	save "github.com/micro/geo-srv/proto/location/save"
+	"github.com/micro/go-micro/client"
+	"github.com/micro/go-micro/errors"
+	"github.com/micro/go-micro/server"
 
 	"golang.org/x/net/context"
 )

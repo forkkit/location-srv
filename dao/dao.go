@@ -2,9 +2,9 @@ package dao
 
 import (
 	geo "github.com/hailocab/go-geoindex"
-	"github.com/myodc/geo-srv/domain"
-	"github.com/myodc/go-micro/errors"
-	"github.com/myodc/go-micro/server"
+	"github.com/micro/geo-srv/domain"
+	"github.com/micro/go-micro/errors"
+	"github.com/micro/go-micro/server"
 )
 
 var (

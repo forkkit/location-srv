@@ -2,10 +2,10 @@ package handler
 
 import (
 	log "github.com/golang/glog"
-	"github.com/myodc/geo-srv/dao"
-	read "github.com/myodc/geo-srv/proto/location/read"
-	"github.com/myodc/go-micro/errors"
-	"github.com/myodc/go-micro/server"
+	"github.com/micro/geo-srv/dao"
+	read "github.com/micro/geo-srv/proto/location/read"
+	"github.com/micro/go-micro/errors"
+	"github.com/micro/go-micro/server"
 
 	"golang.org/x/net/context"
 )

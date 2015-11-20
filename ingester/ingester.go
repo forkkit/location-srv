@@ -2,9 +2,9 @@ package ingester
 
 import (
 	log "github.com/golang/glog"
-	"github.com/myodc/geo-srv/dao"
-	"github.com/myodc/geo-srv/domain"
-	proto "github.com/myodc/geo-srv/proto"
+	"github.com/micro/geo-srv/dao"
+	"github.com/micro/geo-srv/domain"
+	proto "github.com/micro/geo-srv/proto"
 	"golang.org/x/net/context"
 )
 

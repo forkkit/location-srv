@@ -2,9 +2,9 @@ package handler
 
 import (
 	log "github.com/golang/glog"
-	"github.com/myodc/geo-srv/dao"
-	"github.com/myodc/geo-srv/domain"
-	search "github.com/myodc/geo-srv/proto/location/search"
+	"github.com/micro/geo-srv/dao"
+	"github.com/micro/geo-srv/domain"
+	search "github.com/micro/geo-srv/proto/location/search"
 
 	"golang.org/x/net/context"
 )
