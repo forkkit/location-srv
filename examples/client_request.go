@@ -5,33 +5,33 @@ import (
 	"time"
 
 	common "github.com/micro/geo-srv/proto"
-	read "github.com/micro/geo-srv/proto/location/read"
-	save "github.com/micro/geo-srv/proto/location/save"
-	search "github.com/micro/geo-srv/proto/location/search"
+	loc "github.com/micro/geo-srv/proto/location"
 	"github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/cmd"
 
 	"golang.org/x/net/context"
 )
 
+var (
+	cl loc.LocationClient
+)
+
 func saveEntity() {
 	entity := &common.Entity{
 		Id:   "id123",
 		Type: "runner",
-		Location: &common.Location{
+		Location: &common.Point{
 			Latitude:  51.516509,
 			Longitude: 0.124615,
 			Timestamp: time.Now().Unix(),
 		},
 	}
 
-	req := client.NewRequest("go.micro.srv.geo", "Location.Save", &save.Request{
+	_, err := cl.Save(context.Background(), &loc.SaveRequest{
 		Entity: entity,
 	})
 
-	rsp := &save.Response{}
-
-	if err := client.Call(context.Background(), req, rsp); err != nil {
+	if err != nil {
 		fmt.Println(err)
 		return
 	}
@@ -40,13 +40,11 @@ func saveEntity() {
 }
 
 func readEntity() {
-	req := client.NewRequest("go.micro.srv.geo", "Location.Read", &read.Request{
+	rsp, err := cl.Read(context.Background(), &loc.ReadRequest{
 		Id: "id123",
 	})
 
-	rsp := &read.Response{}
-
-	if err := client.Call(context.Background(), req, rsp); err != nil {
+	if err != nil {
 		fmt.Println(err)
 		return
 	}
@@ -55,8 +53,8 @@ func readEntity() {
 }
 
 func searchForEntities() {
-	req := client.NewRequest("go.micro.srv.geo", "Location.Search", &search.Request{
-		Center: &common.Location{
+	rsp, err := cl.Search(context.Background(), &loc.SearchRequest{
+		Center: &common.Point{
 			Latitude:  51.516509,
 			Longitude: 0.124615,
 			Timestamp: time.Now().Unix(),
@@ -66,9 +64,7 @@ func searchForEntities() {
 		NumEntities: 5,
 	})
 
-	rsp := &search.Response{}
-
-	if err := client.Call(context.Background(), req, rsp); err != nil {
+	if err != nil {
 		fmt.Println(err)
 		return
 	}
@@ -78,7 +74,13 @@ func searchForEntities() {
 }
 
 func main() {
+	// init flags
 	cmd.Init()
+
+	// use client stub
+	cl = loc.NewLocationClient("go.micro.srv.geo", client.DefaultClient)
+
+	// do requests
 	saveEntity()
 	readEntity()
 	searchForEntities()

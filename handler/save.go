@@ -3,7 +3,7 @@ package handler
 import (
 	log "github.com/golang/glog"
 	"github.com/micro/geo-srv/ingester"
-	save "github.com/micro/geo-srv/proto/location/save"
+	loc "github.com/micro/geo-srv/proto/location"
 	"github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/errors"
 	"github.com/micro/go-micro/server"
@@ -11,7 +11,7 @@ import (
 	"golang.org/x/net/context"
 )
 
-func (l *Location) Save(ctx context.Context, req *save.Request, rsp *save.Response) error {
+func (l *Location) Save(ctx context.Context, req *loc.SaveRequest, rsp *loc.SaveResponse) error {
 	log.Info("Received Location.Save request")
 
 	entity := req.GetEntity()

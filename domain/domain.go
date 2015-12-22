@@ -28,7 +28,7 @@ func (e *Entity) ToProto() *common.Entity {
 	return &common.Entity{
 		Id:   e.ID,
 		Type: e.Type,
-		Location: &common.Location{
+		Location: &common.Point{
 			Latitude:  e.Latitude,
 			Longitude: e.Longitude,
 			Timestamp: e.Timestamp,

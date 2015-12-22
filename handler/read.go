@@ -3,7 +3,7 @@ package handler
 import (
 	log "github.com/golang/glog"
 	"github.com/micro/geo-srv/dao"
-	read "github.com/micro/geo-srv/proto/location/read"
+	loc "github.com/micro/geo-srv/proto/location"
 	"github.com/micro/go-micro/errors"
 	"github.com/micro/go-micro/server"
 
@@ -12,7 +12,7 @@ import (
 
 type Location struct{}
 
-func (l *Location) Read(ctx context.Context, req *read.Request, rsp *read.Response) error {
+func (l *Location) Read(ctx context.Context, req *loc.ReadRequest, rsp *loc.ReadResponse) error {
 	log.Info("Received Location.Read request")
 
 	id := req.Id

@@ -9,37 +9,43 @@ It is generated from these files:
 	github.com/micro/geo-srv/proto/common.proto
 
 It has these top-level messages:
-	Location
+	Point
 	Entity
 */
 package common
 
 import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
+var _ = fmt.Errorf
+var _ = math.Inf
 
-type Location struct {
+type Point struct {
 	Latitude  float64 `protobuf:"fixed64,1,opt,name=latitude" json:"latitude,omitempty"`
 	Longitude float64 `protobuf:"fixed64,2,opt,name=longitude" json:"longitude,omitempty"`
 	Timestamp int64   `protobuf:"varint,3,opt,name=timestamp" json:"timestamp,omitempty"`
 }
 
-func (m *Location) Reset()         { *m = Location{} }
-func (m *Location) String() string { return proto.CompactTextString(m) }
-func (*Location) ProtoMessage()    {}
+func (m *Point) Reset()                    { *m = Point{} }
+func (m *Point) String() string            { return proto.CompactTextString(m) }
+func (*Point) ProtoMessage()               {}
+func (*Point) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
 
 type Entity struct {
-	Id       string    `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
-	Type     string    `protobuf:"bytes,2,opt,name=type" json:"type,omitempty"`
-	Location *Location `protobuf:"bytes,3,opt,name=location" json:"location,omitempty"`
+	Id       string `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Type     string `protobuf:"bytes,2,opt,name=type" json:"type,omitempty"`
+	Location *Point `protobuf:"bytes,3,opt,name=location" json:"location,omitempty"`
 }
 
-func (m *Entity) Reset()         { *m = Entity{} }
-func (m *Entity) String() string { return proto.CompactTextString(m) }
-func (*Entity) ProtoMessage()    {}
+func (m *Entity) Reset()                    { *m = Entity{} }
+func (m *Entity) String() string            { return proto.CompactTextString(m) }
+func (*Entity) ProtoMessage()               {}
+func (*Entity) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
 
-func (m *Entity) GetLocation() *Location {
+func (m *Entity) GetLocation() *Point {
 	if m != nil {
 		return m.Location
 	}
@@ -47,4 +53,21 @@ func (m *Entity) GetLocation() *Location {
 }
 
 func init() {
+	proto.RegisterType((*Point)(nil), "Point")
+	proto.RegisterType((*Entity)(nil), "Entity")
+}
+
+var fileDescriptor0 = []byte{
+	// 168 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x34, 0x8e, 0x31, 0xeb, 0xc2, 0x30,
+	0x10, 0x47, 0x69, 0xfb, 0xff, 0x17, 0x7b, 0x3a, 0x68, 0xa6, 0x8e, 0xd2, 0x49, 0x10, 0x1b, 0xd0,
+	0x55, 0x70, 0x72, 0xf7, 0x2b, 0xb4, 0x69, 0x88, 0x07, 0x4d, 0x2e, 0xa4, 0x57, 0xa1, 0xdf, 0xde,
+	0x90, 0xe2, 0x78, 0x0f, 0xde, 0xbb, 0x1f, 0x9c, 0x0d, 0xf2, 0x7b, 0xee, 0x5b, 0x45, 0x56, 0x5a,
+	0x54, 0x81, 0xa4, 0xd1, 0x74, 0x99, 0xc2, 0x47, 0xfa, 0x40, 0x4c, 0x32, 0x72, 0x4b, 0xae, 0x4d,
+	0x47, 0xf3, 0x80, 0xff, 0x17, 0xa1, 0x63, 0xb1, 0x87, 0xcd, 0xd8, 0x31, 0xf2, 0x3c, 0xe8, 0x3a,
+	0x3b, 0x66, 0xa7, 0x4c, 0x1c, 0xa0, 0x1a, 0xc9, 0x99, 0x15, 0xe5, 0x3f, 0xc4, 0x68, 0xf5, 0xc4,
+	0x9d, 0xf5, 0x75, 0x11, 0x51, 0xd1, 0xdc, 0xa1, 0x7c, 0xba, 0xe8, 0x2d, 0x02, 0x20, 0xc7, 0x21,
+	0xb9, 0x95, 0xd8, 0xc1, 0x1f, 0x2f, 0x7e, 0xd5, 0x2a, 0x51, 0xc7, 0x36, 0xa9, 0x58, 0x27, 0x97,
+	0xac, 0xed, 0xb5, 0x6c, 0xd3, 0xd7, 0xbe, 0x4c, 0x2b, 0x6e, 0xdf, 0x00, 0x00, 0x00, 0xff, 0xff,
+	0xab, 0xdf, 0x54, 0x35, 0xb4, 0x00, 0x00, 0x00,
 }

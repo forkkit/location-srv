@@ -14,8 +14,7 @@ import (
 	"golang.org/x/net/context"
 
 	common "github.com/micro/geo-srv/proto"
-	save "github.com/micro/geo-srv/proto/location/save"
-	search "github.com/micro/geo-srv/proto/location/search"
+	loc "github.com/micro/geo-srv/proto/location"
 )
 
 type Feature struct {
@@ -35,8 +34,8 @@ type Route struct {
 }
 
 func requestEntity(typ string, num int64, radius, lat, lon float64) ([]*common.Entity, error) {
-	req := client.NewRequest("go.micro.srv.geo", "Location.Search", &search.Request{
-		Center: &common.Location{
+	req := client.NewRequest("go.micro.srv.geo", "Location.Search", &loc.SearchRequest{
+		Center: &common.Point{
 			Latitude:  lat,
 			Longitude: lon,
 		},
@@ -45,7 +44,7 @@ func requestEntity(typ string, num int64, radius, lat, lon float64) ([]*common.E
 		NumEntities: num,
 	})
 
-	rsp := &search.Response{}
+	rsp := &loc.SearchResponse{}
 	err := client.Call(context.Background(), req, rsp)
 	if err != nil {
 		return nil, err
@@ -57,18 +56,18 @@ func saveEntity(id, typ string, lat, lon float64) {
 	entity := &common.Entity{
 		Id:   id,
 		Type: typ,
-		Location: &common.Location{
+		Location: &common.Point{
 			Latitude:  lat,
 			Longitude: lon,
 			Timestamp: time.Now().Unix(),
 		},
 	}
 
-	req := client.NewRequest("go.micro.srv.geo", "Location.Save", &save.Request{
+	req := client.NewRequest("go.micro.srv.geo", "Location.Save", &loc.SaveRequest{
 		Entity: entity,
 	})
 
-	rsp := &save.Response{}
+	rsp := &loc.SaveResponse{}
 
 	if err := client.Call(context.Background(), req, rsp); err != nil {
 		fmt.Println(err)
@@ -97,12 +96,12 @@ func runner(id, typ string, coords [][2]float64) {
 	for {
 		for i := 0; i < len(coords); i++ {
 			saveEntity(id, typ, coords[i][1], coords[i][0])
-			time.Sleep(time.Second*5)
+			time.Sleep(time.Second * 5)
 		}
 
 		for i := len(coords) - 1; i >= 0; i-- {
 			saveEntity(id, typ, coords[i][1], coords[i][0])
-			time.Sleep(time.Second*5)
+			time.Sleep(time.Second * 5)
 		}
 	}
 }

@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-message Location {
-	optional double latitude = 1;
-	optional double longitude = 2;
-	optional int64 timestamp = 3;
+message Point {
+	double latitude = 1;
+	double longitude = 2;
+	int64 timestamp = 3;
 }
 
 message Entity {
-        optional string id = 1;
-	optional string type = 2;
-        optional Location location = 3;
+        string id = 1;
+	string type = 2;
+        Point location = 3;
 }
