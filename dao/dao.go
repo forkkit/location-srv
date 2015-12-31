@@ -14,12 +14,12 @@ var (
 func Read(id string) (*domain.Entity, error) {
 	p := defaultIndex.Get(id)
 	if p == nil {
-		return nil, errors.NotFound(server.Config().Name()+".read", "Not found")
+		return nil, errors.NotFound(server.DefaultOptions().Name+".read", "Not found")
 	}
 
 	entity, ok := p.(*domain.Entity)
 	if !ok {
-		return nil, errors.InternalServerError(server.Config().Name()+".read", "Error reading entity")
+		return nil, errors.InternalServerError(server.DefaultOptions().Name+".read", "Error reading entity")
 	}
 
 	return entity, nil

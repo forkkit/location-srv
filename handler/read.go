@@ -18,7 +18,7 @@ func (l *Location) Read(ctx context.Context, req *loc.ReadRequest, rsp *loc.Read
 	id := req.Id
 
 	if len(id) == 0 {
-		return errors.BadRequest(server.Config().Name()+".read", "Require Id")
+		return errors.BadRequest(server.DefaultOptions().Name+".read", "Require Id")
 	}
 
 	entity, err := dao.Read(id)
