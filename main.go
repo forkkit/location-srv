@@ -1,34 +1,38 @@
 package main
 
 import (
+	"time"
+
 	log "github.com/golang/glog"
 	"github.com/micro/geo-srv/handler"
 	"github.com/micro/geo-srv/ingester"
-	"github.com/micro/go-micro/cmd"
-	"github.com/micro/go-micro/server"
+	proto "github.com/micro/geo-srv/proto/location"
+	"github.com/micro/go-micro"
 )
 
 func main() {
-	// optionally setup command line usage
-	cmd.Init()
+	service := micro.NewService(
+		micro.Name("go.micro.srv.geo"),
+		micro.RegisterTTL(time.Minute),
+		micro.RegisterInterval(time.Second*30),
+	)
 
 	// Initialise Server
-	server.Init(
-		server.Name("go.micro.srv.geo"),
-	)
+	service.Init()
 
 	// Register Handlers
-	server.Handle(
-		server.NewHandler(new(handler.Location)),
-	)
+	proto.RegisterLocationHandler(service.Server(), new(handler.Location))
 
 	// Register Subscriber
-	server.Subscribe(
-		server.NewSubscriber(ingester.Topic, new(ingester.Geo)),
+	service.Server().Subscribe(
+		service.Server().NewSubscriber(
+			ingester.Topic,
+			new(ingester.Geo),
+		),
 	)
 
 	// Run server
-	if err := server.Run(); err != nil {
+	if err := service.Run(); err != nil {
 		log.Fatal(err)
 	}
 }
