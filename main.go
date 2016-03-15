@@ -1,9 +1,9 @@
 package main
 
 import (
+	"log"
 	"time"
 
-	log "github.com/golang/glog"
 	"github.com/micro/geo-srv/handler"
 	"github.com/micro/geo-srv/ingester"
 	proto "github.com/micro/geo-srv/proto/location"

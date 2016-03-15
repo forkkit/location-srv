@@ -1,7 +1,8 @@
 package handler
 
 import (
-	log "github.com/golang/glog"
+	"log"
+
 	"github.com/micro/geo-srv/dao"
 	"github.com/micro/geo-srv/domain"
 	loc "github.com/micro/geo-srv/proto/location"
@@ -10,7 +11,7 @@ import (
 )
 
 func (l *Location) Search(ctx context.Context, req *loc.SearchRequest, rsp *loc.SearchResponse) error {
-	log.Info("Received Location.Search request")
+	log.Print("Received Location.Search request")
 
 	entity := &domain.Entity{
 		Latitude:  req.Center.Latitude,

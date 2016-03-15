@@ -1,7 +1,8 @@
 package ingester
 
 import (
-	log "github.com/golang/glog"
+	"log"
+
 	"github.com/micro/geo-srv/dao"
 	"github.com/micro/geo-srv/domain"
 	proto "github.com/micro/geo-srv/proto"
@@ -15,7 +16,7 @@ var (
 type Geo struct{}
 
 func (g *Geo) Handle(ctx context.Context, e *proto.Entity) error {
-	log.Infof("Saving entity ID %s", e.Id)
+	log.Printf("Saving entity ID %s", e.Id)
 	dao.Save(domain.ProtoToEntity(e))
 	return nil
 }
