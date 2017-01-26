@@ -24,12 +24,7 @@ func main() {
 	proto.RegisterLocationHandler(service.Server(), new(handler.Location))
 
 	// Register Subscriber
-	service.Server().Subscribe(
-		service.Server().NewSubscriber(
-			ingester.Topic,
-			new(ingester.Geo),
-		),
-	)
+	proto.RegisterSubscriber(ingester.Topic, service.Server(), new(ingester.Geo))
 
 	// Run server
 	if err := service.Run(); err != nil {

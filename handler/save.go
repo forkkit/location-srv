@@ -21,9 +21,8 @@ func (l *Location) Save(ctx context.Context, req *loc.SaveRequest, rsp *loc.Save
 		return errors.BadRequest(server.DefaultOptions().Name+".save", "Require location")
 	}
 
-	p := client.NewPublication(ingester.Topic, entity)
-
-	if err := client.Publish(ctx, p); err != nil {
+	p := loc.NewPublisher(ingester.Topic, client.DefaultClient)
+	if err := p.Publish(ctx, entity); err != nil {
 		return errors.InternalServerError(server.DefaultOptions().Name+".save", err.Error())
 	}
 
