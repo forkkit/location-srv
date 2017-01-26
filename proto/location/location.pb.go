@@ -169,7 +169,7 @@ var _ server.Option
 // Publisher API
 
 type Publisher interface {
-	Publish(ctx context.Context, msg interface{}) error
+	Publish(ctx context.Context, msg interface{}, opts ...client.PublishOption) error
 }
 
 type publisher struct {
@@ -177,7 +177,7 @@ type publisher struct {
 	topic string
 }
 
-func (p *publisher) Publish(ctx context.Context, msg interface{}) error {
+func (p *publisher) Publish(ctx context.Context, msg interface{}, opts ...client.PublishOption) error {
 	return p.c.Publish(ctx, p.c.NewPublication(p.topic, msg))
 }
 
@@ -190,7 +190,7 @@ func NewPublisher(topic string, c client.Client) Publisher {
 
 // Subscriber API
 
-func RegisterSubscriber(topic string, s server.Server, h interface{}) error {
+func RegisterSubscriber(topic string, s server.Server, h interface{}, opts ...server.SubscriberOption) error {
 	return s.Subscribe(s.NewSubscriber(topic, h))
 }
 
