@@ -5,6 +5,7 @@ import (
 
 	"github.com/micro/geo-srv/ingester"
 	loc "github.com/micro/geo-srv/proto/location"
+	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/errors"
 	"github.com/micro/go-micro/server"
@@ -21,7 +22,7 @@ func (l *Location) Save(ctx context.Context, req *loc.SaveRequest, rsp *loc.Save
 		return errors.BadRequest(server.DefaultOptions().Name+".save", "Require location")
 	}
 
-	p := loc.NewPublisher(ingester.Topic, client.DefaultClient)
+	p := micro.NewPublisher(ingester.Topic, client.DefaultClient)
 	if err := p.Publish(ctx, entity); err != nil {
 		return errors.InternalServerError(server.DefaultOptions().Name+".save", err.Error())
 	}
