@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	cl loc.LocationClient
+	cl loc.LocationService
 )
 
 func saveEntity() {
@@ -78,7 +78,7 @@ func main() {
 	cmd.Init()
 
 	// use client stub
-	cl = loc.NewLocationClient("go.micro.srv.geo", client.DefaultClient)
+	cl = loc.LocationServiceClient("go.micro.srv.geo", client.DefaultClient)
 
 	// do requests
 	saveEntity()

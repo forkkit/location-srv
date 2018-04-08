@@ -23,9 +23,9 @@ import math "math"
 import _ "github.com/micro/geo-srv/proto"
 
 import (
-	context "context"
 	client "github.com/micro/go-micro/client"
 	server "github.com/micro/go-micro/server"
+	context "context"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -46,31 +46,31 @@ var _ server.Option
 
 // Client API for Location service
 
-type LocationClient interface {
+type LocationService interface {
 	Read(ctx context.Context, in *ReadRequest, opts ...client.CallOption) (*ReadResponse, error)
 	Save(ctx context.Context, in *SaveRequest, opts ...client.CallOption) (*SaveResponse, error)
 	Search(ctx context.Context, in *SearchRequest, opts ...client.CallOption) (*SearchResponse, error)
 }
 
-type locationClient struct {
+type locationService struct {
 	c           client.Client
 	serviceName string
 }
 
-func NewLocationClient(serviceName string, c client.Client) LocationClient {
+func LocationServiceClient(serviceName string, c client.Client) LocationService {
 	if c == nil {
 		c = client.NewClient()
 	}
 	if len(serviceName) == 0 {
 		serviceName = "location"
 	}
-	return &locationClient{
+	return &locationService{
 		c:           c,
 		serviceName: serviceName,
 	}
 }
 
-func (c *locationClient) Read(ctx context.Context, in *ReadRequest, opts ...client.CallOption) (*ReadResponse, error) {
+func (c *locationService) Read(ctx context.Context, in *ReadRequest, opts ...client.CallOption) (*ReadResponse, error) {
 	req := c.c.NewRequest(c.serviceName, "Location.Read", in)
 	out := new(ReadResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -80,7 +80,7 @@ func (c *locationClient) Read(ctx context.Context, in *ReadRequest, opts ...clie
 	return out, nil
 }
 
-func (c *locationClient) Save(ctx context.Context, in *SaveRequest, opts ...client.CallOption) (*SaveResponse, error) {
+func (c *locationService) Save(ctx context.Context, in *SaveRequest, opts ...client.CallOption) (*SaveResponse, error) {
 	req := c.c.NewRequest(c.serviceName, "Location.Save", in)
 	out := new(SaveResponse)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -90,7 +90,7 @@ func (c *locationClient) Save(ctx context.Context, in *SaveRequest, opts ...clie
 	return out, nil
 }
 
-func (c *locationClient) Search(ctx context.Context, in *SearchRequest, opts ...client.CallOption) (*SearchResponse, error) {
+func (c *locationService) Search(ctx context.Context, in *SearchRequest, opts ...client.CallOption) (*SearchResponse, error) {
 	req := c.c.NewRequest(c.serviceName, "Location.Search", in)
 	out := new(SearchResponse)
 	err := c.c.Call(ctx, req, out, opts...)
