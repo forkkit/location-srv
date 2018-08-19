@@ -4,9 +4,9 @@ import (
 	"sync"
 
 	geo "github.com/hailocab/go-geoindex"
-	"github.com/micro/geo-srv/domain"
 	"github.com/micro/go-micro/errors"
 	"github.com/micro/go-micro/server"
+	"github.com/microhq/geo-srv/domain"
 )
 
 var (

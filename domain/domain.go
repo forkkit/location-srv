@@ -1,7 +1,7 @@
 package domain
 
 import (
-	common "github.com/micro/geo-srv/proto"
+	common "github.com/microhq/geo-srv/proto"
 )
 
 type Entity struct {

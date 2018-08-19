@@ -4,10 +4,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/micro/geo-srv/handler"
-	"github.com/micro/geo-srv/ingester"
-	proto "github.com/micro/geo-srv/proto/location"
 	"github.com/micro/go-micro"
+	"github.com/microhq/geo-srv/handler"
+	"github.com/microhq/geo-srv/ingester"
+	proto "github.com/microhq/geo-srv/proto/location"
 )
 
 func main() {

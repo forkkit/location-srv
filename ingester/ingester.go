@@ -3,9 +3,9 @@ package ingester
 import (
 	"log"
 
-	"github.com/micro/geo-srv/dao"
-	"github.com/micro/geo-srv/domain"
-	proto "github.com/micro/geo-srv/proto"
+	"github.com/microhq/geo-srv/dao"
+	"github.com/microhq/geo-srv/domain"
+	proto "github.com/microhq/geo-srv/proto"
 	"golang.org/x/net/context"
 )
 

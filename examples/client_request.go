@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"time"
 
-	common "github.com/micro/geo-srv/proto"
-	loc "github.com/micro/geo-srv/proto/location"
 	"github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/cmd"
+	common "github.com/microhq/geo-srv/proto"
+	loc "github.com/microhq/geo-srv/proto/location"
 
 	"golang.org/x/net/context"
 )
@@ -78,7 +78,7 @@ func main() {
 	cmd.Init()
 
 	// use client stub
-	cl = loc.LocationServiceClient("go.micro.srv.geo", client.DefaultClient)
+	cl = loc.NewLocationService("go.micro.srv.geo", client.DefaultClient)
 
 	// do requests
 	saveEntity()

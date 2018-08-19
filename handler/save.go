@@ -3,12 +3,12 @@ package handler
 import (
 	"log"
 
-	"github.com/micro/geo-srv/ingester"
-	loc "github.com/micro/geo-srv/proto/location"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/errors"
 	"github.com/micro/go-micro/server"
+	"github.com/microhq/geo-srv/ingester"
+	loc "github.com/microhq/geo-srv/proto/location"
 
 	"golang.org/x/net/context"
 )
