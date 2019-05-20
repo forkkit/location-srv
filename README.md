@@ -1,6 +1,6 @@
-# Geo Service
+# Location Service
 
-The Geo Service provides an api for saving and retrieving the gps location of any entity.
+The Location Service provides an api for saving and retrieving the gps location of any entity.
 
 It's uses [go-micro](https://github.com/micro/go-micro) for the microservice core and Hailo's [go-geoindex](https://github.com/hailocab/go-geoindex) for fast point tracking and K-Nearest queries. 
 
