@@ -7,8 +7,8 @@ import (
 	"github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/errors"
 	"github.com/micro/go-micro/server"
-	"github.com/microhq/geo-srv/ingester"
-	loc "github.com/microhq/geo-srv/proto/location"
+	"github.com/microhq/location-srv/ingester"
+	loc "github.com/microhq/location-srv/proto/location"
 
 	"golang.org/x/net/context"
 )

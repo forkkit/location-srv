@@ -6,8 +6,8 @@ import (
 
 	"github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/cmd"
-	common "github.com/microhq/geo-srv/proto"
-	loc "github.com/microhq/geo-srv/proto/location"
+	common "github.com/microhq/location-srv/proto"
+	loc "github.com/microhq/location-srv/proto/location"
 
 	"golang.org/x/net/context"
 )

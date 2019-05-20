@@ -3,9 +3,9 @@ package handler
 import (
 	"log"
 
-	"github.com/microhq/geo-srv/dao"
-	"github.com/microhq/geo-srv/domain"
-	loc "github.com/microhq/geo-srv/proto/location"
+	"github.com/microhq/location-srv/dao"
+	"github.com/microhq/location-srv/domain"
+	loc "github.com/microhq/location-srv/proto/location"
 
 	"golang.org/x/net/context"
 )

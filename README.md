@@ -37,13 +37,13 @@ go run main.go
 Or
 
 ```
-docker run microhq/geo-srv
+docker run microhq/location-srv
 ```
 
 ### Test Service
 
 ```
-go run geo-srv/examples/client_request.go
+go run location-srv/examples/client_request.go
 ```
 
 Output

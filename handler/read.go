@@ -5,8 +5,8 @@ import (
 
 	"github.com/micro/go-micro/errors"
 	"github.com/micro/go-micro/server"
-	"github.com/microhq/geo-srv/dao"
-	loc "github.com/microhq/geo-srv/proto/location"
+	"github.com/microhq/location-srv/dao"
+	loc "github.com/microhq/location-srv/proto/location"
 
 	"golang.org/x/net/context"
 )

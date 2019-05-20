@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "github.com/microhq/geo-srv/proto/common.proto";
+import "github.com/microhq/location-srv/proto/common.proto";
 
 service Location {
 	rpc Read(ReadRequest) returns (ReadResponse) {}

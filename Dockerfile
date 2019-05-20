@@ -1,3 +1,3 @@
 FROM alpine:3.2
-ADD geo-srv /
-ENTRYPOINT [ "/geo-srv" ]
+ADD location-srv /
+ENTRYPOINT [ "/location-srv" ]
